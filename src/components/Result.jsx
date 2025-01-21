@@ -1,7 +1,7 @@
-function Result() {
+function Result({ bill }) {
   return (
     <div id="result" className="text-lg">
-      You can pay $50000
+      You can pay <strong className="font-extrabold">${bill}</strong>
     </div>
   );
 }

@@ -27,57 +27,52 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-      <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl uppercase">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-neutral-800 from-neutral-700">Tip Calculator</span>
-      </h1>
-      <form className="mx-auto my-10 w-7/12">
-        {/* BILL INPUT */}
-        <BillInput bill={bill} onBillChange={onBillChange} />
-        {/* MY RATING */}
-        <ServiceRating selectValue={myRating} name="my" onRatingSelect={onRatingSelect}>
-          How did you like the service?
-        </ServiceRating>
-        {/* FRIEND RATING */}
-        <ServiceRating selectValue={friendRating} name="friend" onRatingSelect={onRatingSelect}>
-          How did your friend like the service?
-        </ServiceRating>
-        {/* SEPARATOR */}
-        <hr className="my-5 border-b-1 border-gray-200 dark:border-gray-600" />
-        {/* RESULT & RESET BUTTON */}
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 py-10">
+      <div className="container mx-auto max-w-2xl px-4">
+        <h1 className="text-4xl font-extrabold text-center mb-8">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600">
+            Split the Bill
+          </span>
+        </h1>
 
-        <div className="flex justify-between items-center mt-5">
-          <p className="text-xs font-medium text-gray-500 dark:text-gray-400">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-white inline mr-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
-            </svg>
-            Tip percentage will be calculated based on the selected rating.
-          </p>
-          {bill > 0 && (
-            <div
-              id="button-container"
-              className="flex justify-end items-center pl-5 gap-5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-            >
-              <Result bill={bill} myRating={myRating} friendRating={friendRating} />
-              <ResetButton onReset={onReset} />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
+          <form className="space-y-6">
+            <BillInput bill={bill} onBillChange={onBillChange} />
+
+            <div className="space-y-4">
+              <ServiceRating selectValue={myRating} name="my" onRatingSelect={onRatingSelect}>
+                Your rating
+              </ServiceRating>
+              <ServiceRating selectValue={friendRating} name="friend" onRatingSelect={onRatingSelect}>
+                Friend's rating
+              </ServiceRating>
             </div>
-          )}
+
+            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-start mb-4">
+                <svg
+                  className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-1 mr-2 flex-shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-sm text-gray-500 dark:text-gray-400">The tip is calculated as an average of both ratings</p>
+              </div>
+
+              {bill > 0 && (
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <Result bill={bill} myRating={myRating} friendRating={friendRating} />
+                  <ResetButton onReset={onReset} />
+                </div>
+              )}
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

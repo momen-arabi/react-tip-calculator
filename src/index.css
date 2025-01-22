@@ -20,3 +20,13 @@ select,
 option {
   cursor: pointer;
 }
+
+::selection {
+  background-color: rgb(6 148 162 / 1);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: rgb(6 148 162 / 1);
+  color: white;
+}

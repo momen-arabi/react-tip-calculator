@@ -20,57 +20,58 @@ function App() {
     setFriendRating(0);
   }
 
-  function onRatingSelect(target) {
-    let { name, value } = target;
-    if (name === "my-rating") setMyRating(+value);
-    else if (name === "friend-rating") setFriendRating(+value);
-  }
+  const onRatingSelect = (target) => {
+    if (target.name === "my") {
+      setMyRating(parseInt(target.value));
+    } else {
+      setFriendRating(parseInt(target.value));
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 py-10">
-      <div className="container mx-auto max-w-2xl px-4">
-        <h1 className="text-4xl font-extrabold text-center mb-8">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600">
-            Split the Bill
+    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white dark:from-gray-900 dark:to-gray-800 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-xl mx-auto">
+        <div className="text-center mb-12">
+          <span className="inline-block bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-sm font-medium px-3 py-1 rounded-full mb-3">
+            Simple & Quick
           </span>
-        </h1>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Calculate Your Tip</h1>
+        </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6">
-          <form className="space-y-6">
-            <BillInput bill={bill} onBillChange={onBillChange} />
+        <div className="space-y-8">
+          <div className="bg-white dark:bg-gray-800 rounded-[2.5rem] p-8 shadow-xl shadow-teal-50 dark:shadow-none">
+            <div className="space-y-8">
+              <BillInput bill={bill} onBillChange={onBillChange} />
 
-            <div className="space-y-4">
-              <ServiceRating selectValue={myRating} name="my" onRatingSelect={onRatingSelect}>
-                Your rating
-              </ServiceRating>
-              <ServiceRating selectValue={friendRating} name="friend" onRatingSelect={onRatingSelect}>
-                Friend's rating
-              </ServiceRating>
-            </div>
-
-            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex items-start mb-4">
-                <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400 mt-1 mr-2 flex-shrink-0"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-sm text-gray-500 dark:text-gray-400">The tip is calculated as an average of both ratings</p>
-              </div>
-
-              {bill > 0 && (
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <Result bill={bill} myRating={myRating} friendRating={friendRating} />
-                  <ResetButton onReset={onReset} />
+              <div className="space-y-6">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">How was the service?</h2>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <ServiceRating selectValue={myRating} name="my" onRatingSelect={onRatingSelect}>
+                    Your Rating
+                  </ServiceRating>
+                  <ServiceRating selectValue={friendRating} name="friend" onRatingSelect={onRatingSelect}>
+                    Friend's Rating
+                  </ServiceRating>
                 </div>
-              )}
+              </div>
             </div>
-          </form>
+          </div>
+
+          {bill > 0 && (
+            <div className="space-y-4">
+              <Result bill={bill} myRating={myRating} friendRating={friendRating} />
+              <div className="flex justify-center pt-4">
+                <ResetButton onReset={onReset} />
+              </div>
+            </div>
+          )}
+
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <svg className="w-5 h-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Final tip is calculated as the average of both ratings
+          </div>
         </div>
       </div>
     </div>

@@ -1,18 +1,20 @@
 function BillInput({ bill, onBillChange }) {
   return (
-    <div className="relative">
-      <label htmlFor="bill-amount" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-        Bill Amount
+    <div>
+      <label htmlFor="bill-amount" className="block text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        What's the bill amount?
       </label>
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+        <div className="absolute inset-y-0 left-0 flex items-center pl-6">
+          <span className="text-2xl font-semibold text-teal-500">$</span>
+        </div>
         <input
           type="number"
           id="bill-amount"
           name="bill-amount"
           value={bill}
           onChange={(e) => onBillChange(e.target.value)}
-          className="pl-7 w-full bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+          className="block w-full pl-12 pr-4 py-4 text-2xl font-semibold text-gray-900 bg-gray-50 border-2 border-gray-100 rounded-2xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-teal-400"
           placeholder="0.00"
           min="0"
           step="0.01"

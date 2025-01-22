@@ -33,19 +33,17 @@ function App() {
         <ServiceRating bill={bill} onRatingSelect={onRatingSelect}>
           How did your friend like the service?
         </ServiceRating>
-        <div className="flex justify-end items-center mt-10">
-          <div
-            id="button-container"
-            className="flex justify-end items-center pl-5 gap-5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-          >
-            {bill > 0 && (
-              <>
-                <Result bill={bill} />
-                <ResetButton onReset={onReset} />
-              </>
-            )}
+        {bill > 0 && (
+          <div className="flex justify-end items-center mt-10">
+            <div
+              id="button-container"
+              className="flex justify-end items-center pl-5 gap-5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            >
+              <Result bill={bill} />
+              <ResetButton onReset={onReset} />
+            </div>
           </div>
-        </div>
+        )}
       </form>
     </div>
   );
